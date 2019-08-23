@@ -15,7 +15,7 @@ We believe that the material for the class should reflect the Academy structure 
 
 ## Documentation
 
-Please refer to [reveal.js](https://github.com/hakimel/reveal.js/blob/master/README.md) documentation for further information on how to add slides, style content, and 
+Please refer to [reveal.js](https://github.com/hakimel/reveal.js/blob/master/README.md) documentation for further information on how to add slides, style content, and more.
 
 ## Issues
 
