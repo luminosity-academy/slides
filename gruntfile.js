@@ -154,7 +154,7 @@ module.exports = grunt => {
 			},
 			markdown: {
 				files: root.map(path => path + '/*.md')
-			},
+			}, 
 			options: {
 				livereload: true
 			}

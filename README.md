@@ -4,7 +4,6 @@
   <h3>
 Collaboratively-driven presentation slides for Luminosity Academy, built on <a href="https://github.com/hakimel/reveal.js">reveal.js</a>.
   </h3>
-
 </div>
 
 ## Introduction
