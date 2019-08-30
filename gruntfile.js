@@ -17,9 +17,7 @@ module.exports = grunt => {
 				'/*!\n' +
 				' * reveal.js <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
 				' * http://revealjs.com\n' +
-				' * MIT licensed\n' +
-				' *\n' +
-				' * Copyright (C) 2019 Hakim El Hattab, http://hakim.se\n' +
+				' * MIT licensed' +
 				' */'
 		},
 
