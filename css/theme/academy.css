@@ -1,6 +1,6 @@
 /**
- * Solarized Light theme for reveal.js.
- * Author: Achim Staebler
+ * Custom Luminosity Academy Solarized Light theme for reveal.js.
+ * Author: Achim Staebler & Chase Adams
  */
 @import url(../../lib/font/league-gothic/league-gothic.css);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
@@ -59,12 +59,15 @@ body {
   word-wrap: break-word; }
 
 .reveal h1 {
+  color: rgb(58, 58, 58);
   font-size: 3.77em; }
 
 .reveal h2 {
+  color: rgb(58, 58, 58);
   font-size: 2.11em; }
 
 .reveal h3 {
+  color: rgb(58, 58, 58);
   font-size: 1.55em; }
 
 .reveal h4 {
@@ -234,8 +237,9 @@ body {
 .reveal section img {
   margin: 15px 0px;
   background: rgba(255, 255, 255, 0.12);
-  border: 4px solid #657b83;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+  /* border: 4px solid #657b83; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
+}
 
 .reveal section img.plain {
   border: 0;

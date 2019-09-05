@@ -1,187 +1,186 @@
-const sass = require('node-sass');
+const sass = require("node-sass");
 
 module.exports = grunt => {
+  require("load-grunt-tasks")(grunt);
 
-	require('load-grunt-tasks')(grunt);
+  let port = grunt.option("port") || 8000;
+  let root = grunt.option("root") || ".";
 
-	let port = grunt.option('port') || 8000;
-	let root = grunt.option('root') || '.';
+  if (!Array.isArray(root)) root = [root];
 
-	if (!Array.isArray(root)) root = [root];
+  // Project configuration
+  grunt.initConfig({
+    pkg: grunt.file.readJSON("package.json"),
+    meta: {
+      banner:
+        "/*!\n" +
+        ' * reveal.js <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
+        " * http://revealjs.com\n" +
+        " * MIT licensed" +
+        " */"
+    },
 
-	// Project configuration
-	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
-		meta: {
-			banner:
-				'/*!\n' +
-				' * reveal.js <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
-				' * http://revealjs.com\n' +
-				' * MIT licensed' +
-				' */'
-		},
+    uglify: {
+      options: {
+        banner: "<%= meta.banner %>\n",
+        ie8: true
+      },
+      build: {
+        src: "js/reveal.js",
+        dest: "js/reveal.min.js"
+      }
+    },
 
-		qunit: {
-			files: [ 'test/*.html' ]
-		},
+    sass: {
+      options: {
+        implementation: sass,
+        sourceMap: false
+      },
+      core: {
+        src: "css/reveal.scss",
+        dest: "css/reveal.css"
+      },
+      themes: {
+        expand: true,
+        cwd: "css/theme/source",
+        src: ["*.sass", "*.scss"],
+        dest: "css/theme",
+        ext: ".css"
+      }
+    },
 
-		uglify: {
-			options: {
-				banner: '<%= meta.banner %>\n',
-				ie8: true
-			},
-			build: {
-				src: 'js/reveal.js',
-				dest: 'js/reveal.min.js'
-			}
-		},
+    autoprefixer: {
+      core: {
+        src: "css/reveal.css"
+      }
+    },
 
-		sass: {
-			options: {
-				implementation: sass,
-				sourceMap: false
-			},
-			core: {
-				src: 'css/reveal.scss',
-				dest: 'css/reveal.css'
-			},
-			themes: {
-				expand: true,
-				cwd: 'css/theme/source',
-				src: ['*.sass', '*.scss'],
-				dest: 'css/theme',
-				ext: '.css'
-			}
-		},
+    cssmin: {
+      options: {
+        compatibility: "ie9"
+      },
+      compress: {
+        src: "css/reveal.css",
+        dest: "css/reveal.min.css"
+      }
+    },
 
-		autoprefixer: {
-			core: {
-				src: 'css/reveal.css'
-			}
-		},
+    jshint: {
+      options: {
+        curly: false,
+        eqeqeq: true,
+        immed: true,
+        esnext: true,
+        latedef: "nofunc",
+        newcap: true,
+        noarg: true,
+        sub: true,
+        undef: true,
+        eqnull: true,
+        browser: true,
+        expr: true,
+        loopfunc: true,
+        globals: {
+          head: false,
+          module: false,
+          console: false,
+          unescape: false,
+          define: false,
+          exports: false,
+          require: false
+        }
+      },
+      files: ["gruntfile.js", "js/reveal.js"]
+    },
 
-		cssmin: {
-			options: {
-				compatibility: 'ie9'
-			},
-			compress: {
-				src: 'css/reveal.css',
-				dest: 'css/reveal.min.css'
-			}
-		},
+    connect: {
+      server: {
+        options: {
+          port: port,
+          base: root,
+          livereload: true,
+          open: true,
+          useAvailablePort: true
+        }
+      }
+    },
 
-		jshint: {
-			options: {
-				curly: false,
-				eqeqeq: true,
-				immed: true,
-				esnext: true,
-				latedef: 'nofunc',
-				newcap: true,
-				noarg: true,
-				sub: true,
-				undef: true,
-				eqnull: true,
-				browser: true,
-				expr: true,
-				loopfunc: true,
-				globals: {
-					head: false,
-					module: false,
-					console: false,
-					unescape: false,
-					define: false,
-					exports: false,
-					require: false
-				}
-			},
-			files: [ 'gruntfile.js', 'js/reveal.js' ]
-		},
+    copy: {
+      main: {
+        files: [
+          {
+            expand: true,
+            src: [
+              "*.html",
+              "css/**",
+              "js/**",
+              "lib/**",
+              "assets/**",
+              "images/**",
+              "plugin/**",
+              "**.md"
+            ],
+            dest: "public/"
+          }
+        ]
+      }
+    },
 
-		connect: {
-			server: {
-				options: {
-					port: port,
-					base: root,
-					livereload: true,
-					open: true,
-					useAvailablePort: true
-				}
-			}
-		},
+    watch: {
+      js: {
+        files: ["gruntfile.js", "js/reveal.js"],
+        tasks: "js"
+      },
+      theme: {
+        files: [
+          "css/theme/source/*.sass",
+          "css/theme/source/*.scss",
+          "css/theme/template/*.sass",
+          "css/theme/template/*.scss"
+        ],
+        tasks: "css-themes"
+      },
+      css: {
+        files: ["css/reveal.scss"],
+        tasks: "css-core"
+      },
+      test: {
+        files: ["test/*.html"],
+        tasks: "test"
+      },
+      html: {
+        files: root.map(path => path + "/*.html")
+      },
+      markdown: {
+        files: root.map(path => path + "/*.md")
+      },
+      options: {
+        livereload: true
+      }
+    }
+  });
 
-		zip: {
-			bundle: {
-				src: [
-					'*.html',
-					'css/**',
-					'js/**',
-					'lib/**',
-					'images/**',
-					'plugin/**',
-					'**.md'
-				],
-				dest: 'reveal-js-presentation.zip'
-			}
-		},
+  // Default task
+  grunt.registerTask("default", ["css", "js"]);
 
-		watch: {
-			js: {
-				files: [ 'gruntfile.js', 'js/reveal.js' ],
-				tasks: 'js'
-			},
-			theme: {
-				files: [
-					'css/theme/source/*.sass',
-					'css/theme/source/*.scss',
-					'css/theme/template/*.sass',
-					'css/theme/template/*.scss'
-				],
-				tasks: 'css-themes'
-			},
-			css: {
-				files: [ 'css/reveal.scss' ],
-				tasks: 'css-core'
-			},
-			test: {
-				files: [ 'test/*.html' ],
-				tasks: 'test'
-			},
-			html: {
-				files: root.map(path => path + '/*.html')
-			},
-			markdown: {
-				files: root.map(path => path + '/*.md')
-			}, 
-			options: {
-				livereload: true
-			}
-		}
+  // JS task
+  grunt.registerTask("js", ["jshint", "uglify"]);
 
-	});
+  // Theme CSS
+  grunt.registerTask("css-themes", ["sass:themes"]);
 
-	// Default task
-	grunt.registerTask( 'default', [ 'css', 'js' ] );
+  // Core framework CSS
+  grunt.registerTask("css-core", ["sass:core", "autoprefixer", "cssmin"]);
 
-	// JS task
-	grunt.registerTask( 'js', [ 'jshint', 'uglify', 'qunit' ] );
+  // All CSS
+  grunt.registerTask("css", ["sass", "autoprefixer", "cssmin"]);
 
-	// Theme CSS
-	grunt.registerTask( 'css-themes', [ 'sass:themes' ] );
+  // Package presentation to public folder
+  grunt.registerTask("package", ["default", "copy"]);
 
-	// Core framework CSS
-	grunt.registerTask( 'css-core', [ 'sass:core', 'autoprefixer', 'cssmin' ] );
+  // Serve presentation locally
+  grunt.registerTask("serve", ["connect", "watch"]);
 
-	// All CSS
-	grunt.registerTask( 'css', [ 'sass', 'autoprefixer', 'cssmin' ] );
-
-	// Package presentation to archive
-	grunt.registerTask( 'package', [ 'default', 'zip' ] );
-
-	// Serve presentation locally
-	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
-
-	// Run tests
-	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
-
+  // Run tests
+  grunt.registerTask("test", ["jshint"]);
 };
