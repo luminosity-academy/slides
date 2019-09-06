@@ -16,6 +16,12 @@ We believe that the material for the class should reflect the Academy structure 
 
 Please refer to [reveal.js](https://github.com/hakimel/reveal.js/blob/master/README.md) documentation for further information on how to add slides, style content, and more.
 
+## Deployment
+
+This repository is deployed to the web using [Zeit Now](https://now.sh). You can find the relevant deploy configs in `now.json` and `gruntfile.js`. All files are copied into a directory named `./public` and Now uses these as a static build.
+
+The `master` branch deployment can be found at [https://slides.luminosity-academy.now.sh](https://slides.luminosity-academy.now.sh/). The GitHub Now plugin also adds comments to Pull Requests with the automatic deployments when you open a PR.
+
 ## Issues
 
 Feel free to submit [issues](https://github.com/luminosity-academy/slides/issues) on GitHub on any content you find to be misleading, out-of-date, or just plain wrong. Even better, submit a PR following the steps [below](#Contributing)!
