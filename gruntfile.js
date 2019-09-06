@@ -121,6 +121,12 @@ module.exports = grunt => {
               "**.md"
             ],
             dest: "public/"
+          },
+          {
+            expand: true,
+            src: ["static/**"],
+						dest: "public/",
+						flatten: true
           }
         ]
       }
