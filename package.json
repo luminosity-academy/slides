@@ -1,8 +1,8 @@
 {
   "name": "slides",
-  "version": "3.8.0",
+  "version": "1.0.0",
   "description": "RevealJS slides for Luminosity Academy",
-  "homepage": "http://revealjs.com",
+  "homepage": "https://slides.luminosity-academy.now.sh",
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
