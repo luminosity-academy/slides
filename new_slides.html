@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<!--
+Author of slides: Christopher Negrich
+Email:            cnegrich@asu.edu
+Github:           cnegrich           
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Luminosity Academy</title>
+
+    <meta
+      name="description"
+      content="A framework for easily creating beautiful presentations using HTML"
+    />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#074e8a" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/academy.css" id="theme" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+
+  </head>
+
+  <body>
+    <div class="reveal">
+      <!-- Start of slides -->
+      <!-- Title Slide -->
+      <div class="slides">
+        <section>
+          <img src="./assets/academy-logo-text-black.png" />
+          <h3>How to Create a New Slide</h3>
+          <pre><code class="hljs js">const module = New_Slides;</code></pre>
+        </section>
+
+        <!-- Slide 2 -->
+        <section data-markdown>
+          <script type="text/template">
+            ## Forking, Getting Link
+            First, fork on github and get the repository link.
+            ![Alt Text](/assets/creating_new_slides/forking.gif)
+          </script>
+        </section>
+
+
+        <!-- Slide 3 -->
+        <section data-markdown>
+          <script type="text/template">
+            ## Cloning, Installing, Starting 
+            Commands are available on the next slide.
+
+            ![Alt Text](/assets/creating_new_slides/cloning_starting.gif)
+
+            [Link to your localhost](http://localhost:8000)
+          </script>
+        </section>
+
+        <!-- Slide 4 -->
+        <section data-markdown>
+          <script type="text/template">
+            ## Commands 
+            ```bash
+            # Make a new directory (Optional)
+            mkdir [folder_name_here]
+            mkdir code
+
+            # Change to a new directory (Optional)
+            cd [path]
+            cd code
+
+            # Clone Repostiory
+            git clone [link copied from github]
+            cd slides/
+
+            # Install dependencies
+            npm install
+
+            # Run local slides
+            npm start
+            ```
+          </script>
+        </section>
+
+        <!-- Slide 5 -->
+        <section data-markdown>
+          <script type="text/template">
+            ## What is Reveal JS?
+            
+            [Reveal JS](https://revealjs.com/) is the platform these slides are built on. They support writing new slides in multiple different formats. There is additional support for transitions and slide arrangements. They have an example presenation host at their site. More information on setup and usage can be found on their [github](https://github.com/hakimel/reveal.js). The next slide will walk through localhost setup.
+          </script>
+        </section>
+
+        <!-- Slide 6 -->
+        <section data-markdown>
+          <script type="text/template">
+            ## Creating a New Slide
+            You can create a copy of the template slide: templates.html.
+
+            To make creating a new slide easier, I made a script to automate the process. Just run:
+            ```bash
+            sh new_slide.sh
+            ```
+            It will create a new file with that name and populate the file with some template data. It will not add you to the table of contents, that will be shown in a later slide. The next slide is a gif of this process.
+          </script>
+        </section>
+
+
+        <!-- Slide 7 -->
+        <section data-markdown>
+          <script type="text/template">
+            ## Creating a New Slide
+            ![Creating a New Slide](./assets/creating_new_slides/new_slides.gif)
+          </script>
+        </section>
+
+        <!-- Slide 8 -->
+        <section data-markdown>
+          <script type="text/template">
+            ## Adding to Table of Contents
+            You will find the following code in the index.html. Add a new line in one of the div containers to add your slide, this one is shown as new_slides.html:
+            ```html
+          <h2>Table of Contents</h2>
+
+          <div style="font-size: 0.8em; display: flex;">
+            <a style="width: 250px; margin: 0 auto" href="/m9.html"><pre ><code class="hljs js">open("m9");</code></pre></a>
+            <a style="width: 250px; margin: 0 auto" href="/m10.html"><pre ><code class="hljs js">open("m10");</code></pre></a>
+            <a style="width: 250px; margin: 0 auto" href="/new_slides.html"><pre ><code class="hljs js">open("New_Slides");</code></pre></a>
+          </div>
+            ```
+
+            ```html
+            <a style="width: 250px; margin: 0 auto" href="/new_slides.html"><pre ><code class="hljs js">open("New_Slides");</code></pre></a>
+            ```
+          </script>
+        </section>
+
+        <!-- Slide 9 -->
+        <section data-markdown>
+          <script type="text/template">
+            ## Writing the Text of a Slide
+
+            [Reveal JS](https://revealjs.com/) allows for many different input types on your slide. I find [markdown](https://www.markdownguide.org/) to be the easiest. Plus you can use [pandoc](https://pandoc.org/) to turn your markdown into a pdf and many other formats (.docx, .ppt, and many many more).
+
+            Here is some of the code of this slide:
+            ```
+        <!-- Slide 9 - This is just a comment -->
+        <section data-markdown>
+          <script type="text/template">
+            ## Writing the Text of a Slide
+
+            [Reveal JS](https://revealjs.com/) allows for many different input types on your slide. I find [markdown](https://www.markdownguide.org/) to be the easiest. Plus you can use [pandoc](https://pandoc.org/) to turn your markdown into a pdf and many other formats (.docx, .ppt, and many many more).
+
+            Here is some of the code of this slide:
+            ```
+          </script>
+        </section>
+
+        <!-- Slide 10 -->
+        <section data-markdown>
+          <script type="text/template">
+            ## Done!
+
+            That is all! You can now create new slides and edit their contents. 
+
+            There are a few more steps to submitting a slide to the repository. I will add a git tutorial explaining these steps and how to use git in the future.
+          </script>
+        </section>
+
+      <!-- End of slides -->
+      </div>
+    </div>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+
+        transition: "slide", // none/fade/slide/convex/concave/zoom
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          {
+            src: "plugin/markdown/marked.js",
+            condition: function() {
+              return !!document.querySelector("[data-markdown]");
+            }
+          },
+          {
+            src: "plugin/markdown/markdown.js",
+            condition: function() {
+              return !!document.querySelector("[data-markdown]");
+            }
+          },
+          { src: "plugin/highlight/highlight.js", async: true },
+          { src: "plugin/search/search.js", async: true },
+          { src: "plugin/zoom-js/zoom.js", async: true },
+          { src: "plugin/notes/notes.js", async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
